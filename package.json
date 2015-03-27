@@ -1,0 +1,18 @@
+{
+  "name": "Optionaljs",
+  "version": "0.0.1",
+  "description": "function Option for js",
+  "main": "dist/optional.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": " node ./node_modules/mocha/bin/mocha test/js/*_test.js"
+  },
+  "author": "Robert Silve <robert@silve.net>",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^2.2.1",
+    "should": "^5.2.0"
+  }
+}
