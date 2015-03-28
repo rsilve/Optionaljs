@@ -2,10 +2,10 @@
 
     // Enable multiple loading tool
 
-    if (define && typeof define === 'function' && define.amd) {
+    if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], factory());
-    } else if (module && typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    } else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
         // Node js
         module.exports = factory();
     } else {
