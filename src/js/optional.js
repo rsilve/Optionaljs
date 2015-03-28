@@ -2,10 +2,10 @@
 
     // Enable multiple loading tool
 
-    if (typeof define === 'function' && define.amd) {
+    if (define && typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], factory());
-    } else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    } else if (module && typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
         // Node js
         module.exports = factory();
     } else {
@@ -78,11 +78,21 @@
             return this.map(fn).flatten();
         };
 
-
+        /**
+         * Return the option value if not empty
+         * or the value give in arguments
+         *
+         * @param other
+         * @returns {*}
+         */
         this.getOrElse = function (other) {
             return this.isEmpty() ? other : _value ;
         };
 
+        /**
+         * To String ...
+         * @returns {string}
+         */
         this.toString = function() {
             return this.isEmpty() ? "Optional.empty()" : "Optional("+_value.toString()+")";
         };

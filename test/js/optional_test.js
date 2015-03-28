@@ -8,27 +8,36 @@ var Optional = require('../../src/js/optional');
 describe('Optional', function(){
 
     describe('#empty()', function(){
-        it('should return an empty option', function(){
+        it('should return an immutable empty option', function(){
             Optional.empty().isEmpty().should.be.true;
             Optional.empty().map(function() {return false}).getOrElse(true).should.be.true;
+            var o = Optional.empty();
+            o.newProperty = function() {};
+            o.should.not.have.properties('newProperty')
         })
     });
 
     describe('#of()', function(){
-        it('should return an not empty option', function(){
+        it('should return an immutable not empty option', function(){
             Optional.of(1).isEmpty().should.be.false;
             Optional.of(1).get().should.be.equal(1);
             Optional.of(1).map(function() {return true}).getOrElse(false).should.be.true;
             (function() {Optional.of(null)}).should.be.throw();
+            var o = Optional.of(1);
+            o.newProperty = function() {};
+            o.should.not.have.properties('newProperty')
         })
     });
 
     describe('#ofNullable()', function(){
-        it('should return an not empty option given a not null value', function(){
+        it('should return an immutable not empty option given a not null value', function(){
             Optional.ofNullable(1).isEmpty().should.be.false;
             Optional.ofNullable(1).get().should.be.equal(1);
             Optional.ofNullable(1).map(function() {return true}).getOrElse(false).should.be.true;
-        })
+            var o = Optional.ofNullable(1);
+            o.newProperty = function() {};
+            o.should.not.have.properties('newProperty')
+        });
         it('should return an  empty option given a null value', function(){
             Optional.ofNullable(null).isEmpty().should.be.true;
             Optional.ofNullable(null).map(function() {return false}).getOrElse(true).should.be.true;
